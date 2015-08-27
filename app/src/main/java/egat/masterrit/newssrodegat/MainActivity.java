@@ -1,5 +1,6 @@
 package egat.masterrit.newssrodegat;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,6 +9,9 @@ import android.view.MenuItem;
 public class MainActivity extends AppCompatActivity {
 
     private UserTABLE objUserTABLE;
+    private NewsTABLE objNewsTABLE;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -15,10 +19,30 @@ public class MainActivity extends AppCompatActivity {
 
         //Create & Connected Database
         createConnected();
+
+        // Tester Add New Value
+        //testerAddUser();
+
+        //Delete All Data
+        deleteAllEata();
+
     }// onCreate
+
+    private void deleteAllEata() {
+        SQLiteDatabase objSqLiteDatabase = openOrCreateDatabase("srod.db", MODE_PRIVATE, null);
+        objSqLiteDatabase.delete("userTABLE", null, null);
+        objSqLiteDatabase.delete("newsTABLE", null, null);
+    }
+
+    private void testerAddUser() {
+        objUserTABLE.addNewUser("testUser", "testPass", "ทดสอบชื่อ");
+        objNewsTABLE.addNews("27 Aug 2015", "Head", "yyyyyy", "http://image", "EGAT");
+
+    }
 
     private void createConnected() {
         objUserTABLE = new UserTABLE(this);
+        objNewsTABLE = new NewsTABLE(this);
     }
 
     @Override
