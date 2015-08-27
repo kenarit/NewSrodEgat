@@ -26,7 +26,7 @@ public class MyOpenHelper extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(CREATE_USER_TABLE);
         sqLiteDatabase.execSQL(CREATE_NEWS_TABLE);
-        
+
     }
 
     @Override
